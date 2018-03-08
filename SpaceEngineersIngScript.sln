@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblerCleaner", "SpaceEngineersIngScript\AssemblerCleaner.csproj", "{A69878D0-BC66-43FD-B4CE-CFC6B62271A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEAntennaTests", "SEAntennaTests\SEAntennaTests.csproj", "{11672E70-63EE-46E8-A769-6211F511E431}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntennaCtrldAirHangar", "AntennaCtrldAirHangar\AntennaCtrldAirHangar.csproj", "{31AF3021-4E63-400A-B710-8B90331598DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjPowerProductionOverview", "DjPowerProductionOverview\DjPowerProductionOverview.csproj", "{14CD3F14-15F7-4589-81B4-FC3D9FAD41B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryoManager", "CryoManager\CryoManager.csproj", "{3CB9B829-1913-4619-A67E-5D9D35219577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntennaSender", "AntennaSender\AntennaSender.csproj", "{5E2AB062-0511-4E19-A0AE-34CDEBBF6D2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntennaReceiver", "AntennaReceiver\AntennaReceiver.csproj", "{F743F88E-99D2-4D9F-82A7-AE7335A9CAB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjRoomOverview", "DjRoomOverview\DjRoomOverview.csproj", "{CE3221CF-57DF-4876-AEC2-5C51054EDC60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A69878D0-BC66-43FD-B4CE-CFC6B62271A1}.Debug|x64.ActiveCfg = Debug|x64
+		{A69878D0-BC66-43FD-B4CE-CFC6B62271A1}.Debug|x64.Build.0 = Debug|x64
+		{11672E70-63EE-46E8-A769-6211F511E431}.Debug|x64.ActiveCfg = Debug|x64
+		{11672E70-63EE-46E8-A769-6211F511E431}.Debug|x64.Build.0 = Debug|x64
+		{31AF3021-4E63-400A-B710-8B90331598DA}.Debug|x64.ActiveCfg = Debug|x64
+		{31AF3021-4E63-400A-B710-8B90331598DA}.Debug|x64.Build.0 = Debug|x64
+		{14CD3F14-15F7-4589-81B4-FC3D9FAD41B6}.Debug|x64.ActiveCfg = Debug|x64
+		{14CD3F14-15F7-4589-81B4-FC3D9FAD41B6}.Debug|x64.Build.0 = Debug|x64
+		{3CB9B829-1913-4619-A67E-5D9D35219577}.Debug|x64.ActiveCfg = Debug|x64
+		{3CB9B829-1913-4619-A67E-5D9D35219577}.Debug|x64.Build.0 = Debug|x64
+		{5E2AB062-0511-4E19-A0AE-34CDEBBF6D2E}.Debug|x64.ActiveCfg = Debug|x64
+		{5E2AB062-0511-4E19-A0AE-34CDEBBF6D2E}.Debug|x64.Build.0 = Debug|x64
+		{F743F88E-99D2-4D9F-82A7-AE7335A9CAB0}.Debug|x64.ActiveCfg = Debug|x64
+		{F743F88E-99D2-4D9F-82A7-AE7335A9CAB0}.Debug|x64.Build.0 = Debug|x64
+		{CE3221CF-57DF-4876-AEC2-5C51054EDC60}.Debug|x64.ActiveCfg = Debug|x64
+		{CE3221CF-57DF-4876-AEC2-5C51054EDC60}.Debug|x64.Build.0 = Debug|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F35F1A0D-1686-4CF5-9E47-913F875EF551}
+	EndGlobalSection
+EndGlobal
