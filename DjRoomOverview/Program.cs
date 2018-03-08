@@ -157,6 +157,7 @@ namespace IngameScript
 
 			DjConfig.sensorBlocks = DjConfig.filteredBlocks.Where(s => s is IMySensorBlock).Cast<IMySensorBlock>().ToList();
 			DjConfig.textBlocks = DjConfig.filteredBlocks.Where(s => s is IMyTextPanel).Cast<IMyTextPanel>().ToList();
+			blubb
 			*/
 			// New
 			DjConfig.filteredBlocks.AddRange(DjConfig.allBlocks.Where(s => s.CustomName.StartsWith(DjConfig.roomKeyword)));
