@@ -61,7 +61,7 @@ namespace IngameScript
 				GetBlockLists();
 				DjConfig.timer = 0;
 			}
-
+			DjConfig.sensorCount = 0;
 			foreach (IMySensorBlock mySensor in DjConfig.sensorBlocks)
 			{
 				mySensor.PlayProximitySound = DjConfig.playSound;
@@ -124,7 +124,7 @@ namespace IngameScript
 				DjConfig.sensorCount++;
 				
 			}
-
+			DjConfig.panelCount = 0;
 			foreach (IMyTextPanel textPanel in DjConfig.textBlocks)
 			{
 				textPanel.ShowPublicTextOnScreen();
@@ -148,6 +148,7 @@ namespace IngameScript
 			DjConfig.allBlocks.Clear();
 			DjConfig.filteredBlocks.Clear();
 			DjConfig.sensorBlocks.Clear();
+			DjConfig.textBlocks.Clear();
 			DjConfig.filteredBlocks.Clear();
 
 			GridTerminalSystem.GetBlocks(DjConfig.allBlocks);
