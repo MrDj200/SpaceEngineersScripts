@@ -97,6 +97,10 @@ namespace IngameScript
 					else if(myEnt.Type == MyDetectedEntityType.CharacterHuman)
 					{
 						listChar = 'P';
+						if (myEnt.Relationship == MyRelationsBetweenPlayerAndBlock.FactionShare || myEnt.Relationship == MyRelationsBetweenPlayerAndBlock.Owner)
+						{
+							relation = "Friendly";
+						}
 					}
 					else if (myEnt.Type == MyDetectedEntityType.CharacterOther)
 					{
@@ -105,7 +109,7 @@ namespace IngameScript
 					else if (myEnt.Type == MyDetectedEntityType.SmallGrid)
 					{
 						listChar = 'S';
-						relation = "Small Ship";
+						relation = "S-Ship";
 					}
 					else if (myEnt.Type == MyDetectedEntityType.LargeGrid)
 					{
@@ -115,7 +119,7 @@ namespace IngameScript
 					DjConfig.message.
 						Append("\n" + listChar + " - ").
 						//Append(myEnt.Name).
-						Append(String.Format("{0,-18} | {1,5}", myEnt.Name, relation));
+						Append(String.Format("{0,-15} | {1,5}", myEnt.Name, relation));
 						//Append(myEnt.Relationship);
 						
 				}
@@ -152,22 +156,12 @@ namespace IngameScript
 			DjConfig.filteredBlocks.Clear();
 
 			GridTerminalSystem.GetBlocks(DjConfig.allBlocks);
-			
-			/*/ Old:
-			DjConfig.filteredBlocks = DjConfig.allBlocks.Where(s => s.CustomName.StartsWith(DjConfig.roomKeyword)).ToList();			
 
-			DjConfig.sensorBlocks = DjConfig.filteredBlocks.Where(s => s is IMySensorBlock).Cast<IMySensorBlock>().ToList();
-			DjConfig.textBlocks = DjConfig.filteredBlocks.Where(s => s is IMyTextPanel).Cast<IMyTextPanel>().ToList();
-			blubb
-			*/
-			// New
+
 			DjConfig.filteredBlocks.AddRange(DjConfig.allBlocks.Where(s => s.CustomName.StartsWith(DjConfig.roomKeyword)));
 
 			DjConfig.sensorBlocks.AddRange(DjConfig.filteredBlocks.OfType<IMySensorBlock>());
 			DjConfig.textBlocks.AddRange(DjConfig.filteredBlocks.OfType<IMyTextPanel>());
-
-
-
 
 		}
 	}
