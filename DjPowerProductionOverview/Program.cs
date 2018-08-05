@@ -183,27 +183,27 @@ namespace IngameScript
 			// Setup 
 			float totalUranium = 0.0f;
 
-			IMyInventoryOwner owner;
+            //IMyInventoryOwner owner;
 			IMyInventory inventory;
 			List<IMyInventoryItem> totalitems = new List<IMyInventoryItem>();
 
-			// Acquire All Reactor Inventories 
-			for (int i = 0; i < reactors.Count; i++)
-			{
-				owner = (IMyInventoryOwner)reactors[i];
-				inventory = owner.GetInventory(0);
-				var items = inventory.GetItems();
+            // Acquire All Reactor Inventories 
 
-				totalitems.AddRange(items);
-			}
+            foreach (IMyReactor reactor in reactors)
+            {
+                inventory = reactor.GetInventory(0);
+                var items = inventory.GetItems();
 
-			for (int i = 0; i < totalitems.Count; i++)
-			{
-				if (totalitems[i].Content.SubtypeName == "Uranium")
-				{
-					totalUranium += (float)totalitems[i].Amount;
-				}
-			}
+                totalitems.AddRange(items);
+            }
+
+            foreach (IMyInventoryItem item in totalitems)
+            {
+                if (item.Content.SubtypeId.ToString() == "Uranium")
+                {
+                    totalUranium += (float)item.Amount;
+                }
+            }
 
 			return totalUranium.ToString("n2");
 		}

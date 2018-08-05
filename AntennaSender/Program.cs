@@ -37,7 +37,8 @@ namespace IngameScript
 			{
 				if (ant.IsFunctional && ant.IsWorking)
 				{
-					ant.TransmitMessage(argument, MyTransmitTarget.Ally);
+					bool result = ant.TransmitMessage(argument, MyTransmitTarget.Ally);
+                    Echo($"Transmitted \"{argument}\" on Antenna \"{ant.CustomName}\" Status: {result}");
 					return;
 				}
 			}

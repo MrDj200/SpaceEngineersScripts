@@ -39,11 +39,12 @@ namespace IngameScript
 
 		public void Main(string argument, UpdateType updateSource)
 		{
-			if (String.IsNullOrEmpty(argument))
+            if (String.IsNullOrEmpty(argument))
 			{
 				Echo("No argument!");
 				return;
 			}
+            Echo($"Hey! I received {argument}!");
 
 			IMyBlockGroup myGroup = GridTerminalSystem.GetBlockGroupWithName(argument);
 			List<IMyAirtightHangarDoor> myDoors = new List<IMyAirtightHangarDoor>();
@@ -57,6 +58,7 @@ namespace IngameScript
 
 			foreach (IMyAirtightHangarDoor door in myDoors)
 			{
+                Echo("Toggled doors!");
 				door.ToggleDoor();
 			}
 		}
