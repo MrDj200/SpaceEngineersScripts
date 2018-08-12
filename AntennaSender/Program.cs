@@ -35,6 +35,10 @@ namespace IngameScript
 
 			foreach (IMyRadioAntenna ant in myAntennas)
 			{
+                if (ant.CubeGrid != Me.CubeGrid)
+                {
+                    continue;
+                }
 				if (ant.IsFunctional && ant.IsWorking)
 				{
 					bool result = ant.TransmitMessage(argument, MyTransmitTarget.Ally);
@@ -42,6 +46,7 @@ namespace IngameScript
 					return;
 				}
 			}
+            throw new Exception("No Antenna found on current Grid!");
 
 			//var ant = GridTerminalSystem.GetBlockWithName("Antenna") as IMyRadioAntenna;
 			//ant.TransmitMessage(argument, MyTransmitTarget.Everyone);

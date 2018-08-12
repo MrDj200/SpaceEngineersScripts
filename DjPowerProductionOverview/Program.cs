@@ -22,20 +22,28 @@ namespace IngameScript
 		void Configuration()
 		{
 			// Name of the Group containing the LCD Panels
-			DjConfig.LcdGroupName = "PPO Group";
+			DjConfig.PPOLcdGroupName = "PPO Group";
 
-			// Max Output of Solar panels on a big Grid in kW
-			DjConfig.solarMaxOutBig = 120;
+            // Name of the Group containing the Hydrogen Info Panels
+            DjConfig.HydroLcdGroupName = "Hydro LCD Group";
+
+            // Max Output of Solar panels on a big Grid in kW
+            DjConfig.solarMaxOutBig = 120;
 
 			// Max Output of Solar panels on a small Grid in kW
 			DjConfig.solarMaxOutSmall = 30;
 
 		}
 
-		public static class DjConfig
+        ///////////////////////////////
+        //Do not modify the following//
+        ///////////////////////////////
+
+        public static class DjConfig
 		{
-			public static String LcdGroupName = "PPO Group";
-			public static int solarMaxOutBig = 120, solarMaxOutSmall = 30;
+			public static String PPOLcdGroupName = "PPO Group";
+            public static String HydroLcdGroupName = "Hydro LCD Group";
+            public static int solarMaxOutBig = 120, solarMaxOutSmall = 30;
 			public static StringBuilder message = new StringBuilder();
 			public static float solarMaxOutOptimal, solarCurOut, solarCurMaxOut;
 			public static int solarCountSmall = 0, solarCountBig = 0, solarCountTotal = 0, solarCountBroken = 0, solarCountTurnedOff = 0;
@@ -43,8 +51,7 @@ namespace IngameScript
 			public static int reactorCountSmall = 0, reactorCountBig = 0, reactorCountTotal = 0;
 			public static float reactorMaxOut = 0f, reactorCurOut = 0f;
 
-			public static float totalUraniumLeft = 0f, totalPowerGenerated = 0f;
-			
+			public static float totalUraniumLeft = 0f, totalPowerGenerated = 0f;		
 
 		}
 
@@ -56,26 +63,117 @@ namespace IngameScript
 
 		public void Main(string argument, UpdateType updateSource)
 		{		
-			var lcdGroup = GridTerminalSystem.GetBlockGroupWithName(DjConfig.LcdGroupName);
-			List<IMyTextPanel> myLcdPanels = new List<IMyTextPanel>();		
-			lcdGroup.GetBlocksOfType(myLcdPanels);
+			var lcdGroup = GridTerminalSystem.GetBlockGroupWithName(DjConfig.PPOLcdGroupName);
+;			List<IMyTextPanel> myPPOLcdPanels = new List<IMyTextPanel>();            
+            lcdGroup.GetBlocksOfType(myPPOLcdPanels);            
 
-			if (myLcdPanels.Count <= 0)
+            var hydroLcdGroup = GridTerminalSystem.GetBlockGroupWithName(DjConfig.HydroLcdGroupName);
+            List<IMyTextPanel> myHydroLcdPanels = new List<IMyTextPanel>();
+            hydroLcdGroup.GetBlocksOfType(myHydroLcdPanels);
+
+            if (myPPOLcdPanels.Count <= 0 /*&& myHydroLcdPanels.Count <= 0*/)
+            {
+                Echo($"Groups \"{DjConfig.PPOLcdGroupName}\" and \"{DjConfig.HydroLcdGroupName}\" are empty!");
+                return;
+            }
+            if (myPPOLcdPanels.Count >= 0)
 			{
-				Echo("Group \"" + DjConfig.LcdGroupName + "\" is empty!");
-				return;
-			}
+                SolarStuff();
+                ReactorStuff();
 
-			SolarStuff();
-			ReactorStuff();
-
-			foreach (IMyTextPanel curPanel in myLcdPanels)
-			{
-				curPanel.ShowPublicTextOnScreen();
-				curPanel.WritePublicText(DjConfig.message, false);
-			}
+                WriteTextOnList(myPPOLcdPanels, DjConfig.message);
+            }
+            if (myHydroLcdPanels.Count >= 0)
+            {
+                HydroStuff(myHydroLcdPanels);
+            }          
 			
 		}
+
+        void HydroStuff(List<IMyTextPanel> myHydroLcdPanels)
+        {
+            StringBuilder hydroMessage = new StringBuilder();
+            List<IMyGasTank> hydroTanks;
+            List<IMyGasTank> oxyTanks;
+            GetBigTanks(out hydroTanks, out oxyTanks);
+
+            if (hydroTanks.Count <= 0)
+            {
+                hydroMessage.Clear();
+                hydroMessage.Append("No Hydrogen tanks found!");
+                WriteTextOnList(myHydroLcdPanels, hydroMessage);
+                return;
+            }
+
+            float hydroCap = 0f; // Total hydrogen capacity
+            float oxyCap = 0f; // Total oxygen capacity
+
+            float overallHydrogenContent = 0f; // Total Hydrogen content
+            float overallOxygenContent = 0f; // Total Oxygen content
+
+            foreach (IMyGasTank tank in hydroTanks)
+            {
+                hydroCap += tank.Capacity; // Adding the capacity of the current tank to the total capacity
+
+                overallHydrogenContent += (float)(tank.Capacity * tank.FilledRatio); // Adding the content of the current tank to the total content
+            }
+
+            foreach (IMyGasTank tank in oxyTanks)
+            {
+                oxyCap += tank.Capacity; // Adding the capacity of the current tank to the total capacity
+
+                overallOxygenContent += (float)(tank.Capacity * tank.FilledRatio); // Adding the content of the current tank to the total content
+            }
+
+            hydroMessage.
+                Append($"Current Hydrogen Status:\n {overallHydrogenContent.ToString("N0")}l/{hydroCap.ToString("N0")}l\n\n").
+                Append($"Percentage: {((overallHydrogenContent / hydroCap) * 100).ToString("F2")}%\n\n").
+                Append($"Hydrogen Tank Count: {hydroTanks.Count}\n\n");
+
+            hydroMessage.
+                Append($"Current Oxygen Status:\n {overallOxygenContent.ToString("N0")}l/{oxyCap.ToString("N0")}l\n\n").
+                Append($"Percentage: {((overallOxygenContent / oxyCap) * 100).ToString("F2")}%\n\n").
+                Append($"Oxygen Tank Count: {oxyTanks.Count}");
+
+
+            WriteTextOnList(myHydroLcdPanels, hydroMessage);
+        }
+
+        /*void GetThrusterDownwards()
+        {
+            List<IMyThrust> shit = new List<IMyThrust>();
+            GridTerminalSystem.GetBlocksOfType(shit);
+
+            foreach (IMyThrust thruster in shit)
+            {
+                MyBlockOrientation fuck = thruster.Orientation;
+            }
+        }*/
+
+        MyShipMass GetShipMass()
+        {
+            List<IMyShipController> shipController = new List<IMyShipController>();
+            GridTerminalSystem.GetBlocksOfType<IMyShipController>(shipController);
+
+            foreach (var item in shipController)
+            {
+                if (item.IsMainCockpit && item.CubeGrid == Me.CubeGrid)
+                {
+                    return item.CalculateShipMass();
+                }
+            }
+
+            throw new Exception("No ship controller on this grid!");
+        }
+
+        void WriteTextOnList(List<IMyTextPanel> list, StringBuilder msg, bool append = false)
+        {
+            foreach (IMyTextPanel curPanel in list)
+            {
+                curPanel.ShowPublicTextOnScreen();
+                curPanel.WritePublicText(msg, append);
+            }
+        }
 
 		void SolarStuff()
 		{
@@ -137,6 +235,44 @@ namespace IngameScript
 
 		}
 
+        void GetBigTanks(out List<IMyGasTank> hydroTanks, out List<IMyGasTank> oxygenTanks, bool onlyOwngrid = true)
+        {
+            List<IMyGasTank> allTanks = new List<IMyGasTank>();
+            GridTerminalSystem.GetBlocksOfType(allTanks);
+
+            List<IMyGasGenerator> allOxyGenerators = new List<IMyGasGenerator>();
+            GridTerminalSystem.GetBlocksOfType(allOxyGenerators);
+
+            hydroTanks = new List<IMyGasTank>();
+            oxygenTanks = new List<IMyGasTank>();
+         
+
+            foreach (IMyGasTank tank in allTanks)
+            {
+                if (tank.CubeGrid.GridSizeEnum == MyCubeSize.Large)
+                {
+                    if (onlyOwngrid)
+                    {
+                        if(tank.CubeGrid != Me.CubeGrid)
+                        {
+                            continue;
+                        }
+                    }
+
+                    if (tank.BlockDefinition.SubtypeId.Contains("Hydro"))
+                    {
+                        hydroTanks.Add(tank);
+                        continue;
+                    }
+                    else
+                    {
+                        oxygenTanks.Add(tank);
+                        continue;
+                    }
+                }
+            }
+        }
+
 		void ReactorStuff()
 		{
 
@@ -170,7 +306,7 @@ namespace IngameScript
 				Append("\n\nReactors:\n").
 				Append("Uranium Left: " + TotalUranium(myReactorList) + "kg\n").
 				Append(Math.Round(DjConfig.reactorCurOut, 2) + "/" + Math.Round(DjConfig.reactorMaxOut, 2) + " MW\n").
-				Append(GetPercentage(DjConfig.reactorCurOut, DjConfig.reactorMaxOut) + "% of possible power Output (Reactor)\n").
+                Append($"{GetPercentage(DjConfig.reactorCurOut, DjConfig.reactorMaxOut).ToString("F3")}% of possible power Output (Reactor)\n").
 				Append("Total Reactors: " + DjConfig.reactorCountTotal).
 				Append("\n Big Reactors: " + DjConfig.reactorCountBig).
 				Append("\n Small Reactors: " + DjConfig.reactorCountSmall);
@@ -210,7 +346,7 @@ namespace IngameScript
 
 		float GetPercentage(float myCurrent, float myMax)
 		{
-			int tempVal = (int)((myCurrent / myMax) * 100) * 100;
+			float tempVal = ((myCurrent / myMax) * 100) * 100;
 			return tempVal / 100;
 		}
 

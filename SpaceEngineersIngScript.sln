@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntennaReceiver", "AntennaR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjRoomOverview", "DjRoomOverview\DjRoomOverview.csproj", "{CE3221CF-57DF-4876-AEC2-5C51054EDC60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxygenControl", "OxygenControl\OxygenControl.csproj", "{9E68E2BD-C289-4DC1-B4CB-95734968DCDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -40,6 +42,8 @@ Global
 		{F743F88E-99D2-4D9F-82A7-AE7335A9CAB0}.Debug|x64.Build.0 = Debug|x64
 		{CE3221CF-57DF-4876-AEC2-5C51054EDC60}.Debug|x64.ActiveCfg = Debug|x64
 		{CE3221CF-57DF-4876-AEC2-5C51054EDC60}.Debug|x64.Build.0 = Debug|x64
+		{9E68E2BD-C289-4DC1-B4CB-95734968DCDC}.Debug|x64.ActiveCfg = Debug|x64
+		{9E68E2BD-C289-4DC1-B4CB-95734968DCDC}.Debug|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
