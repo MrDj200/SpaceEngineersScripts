@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjRoomOverview", "DjRoomOve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxygenControl", "OxygenControl\OxygenControl.csproj", "{9E68E2BD-C289-4DC1-B4CB-95734968DCDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{47099909-E843-4534-9425-B9307BE3DAFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScripts", "SaveScripts\SaveScripts.csproj", "{E0E49B37-62C8-4509-B83C-7356A4363477}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -44,6 +48,10 @@ Global
 		{CE3221CF-57DF-4876-AEC2-5C51054EDC60}.Debug|x64.Build.0 = Debug|x64
 		{9E68E2BD-C289-4DC1-B4CB-95734968DCDC}.Debug|x64.ActiveCfg = Debug|x64
 		{9E68E2BD-C289-4DC1-B4CB-95734968DCDC}.Debug|x64.Build.0 = Debug|x64
+		{47099909-E843-4534-9425-B9307BE3DAFF}.Debug|x64.ActiveCfg = Debug|x64
+		{47099909-E843-4534-9425-B9307BE3DAFF}.Debug|x64.Build.0 = Debug|x64
+		{E0E49B37-62C8-4509-B83C-7356A4363477}.Debug|x64.ActiveCfg = Debug|x64
+		{E0E49B37-62C8-4509-B83C-7356A4363477}.Debug|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

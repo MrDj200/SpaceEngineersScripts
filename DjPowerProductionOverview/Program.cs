@@ -64,8 +64,8 @@ namespace IngameScript
 		public void Main(string argument, UpdateType updateSource)
 		{		
 			var lcdGroup = GridTerminalSystem.GetBlockGroupWithName(DjConfig.PPOLcdGroupName);
-;			List<IMyTextPanel> myPPOLcdPanels = new List<IMyTextPanel>();            
-            lcdGroup.GetBlocksOfType(myPPOLcdPanels);            
+			List<IMyTextPanel> myPPOLcdPanels = new List<IMyTextPanel>();            
+            lcdGroup.GetBlocksOfType(myPPOLcdPanels);
 
             var hydroLcdGroup = GridTerminalSystem.GetBlockGroupWithName(DjConfig.HydroLcdGroupName);
             List<IMyTextPanel> myHydroLcdPanels = new List<IMyTextPanel>();
@@ -128,12 +128,21 @@ namespace IngameScript
             hydroMessage.
                 Append($"Current Hydrogen Status:\n {overallHydrogenContent.ToString("N0")}l/{hydroCap.ToString("N0")}l\n\n").
                 Append($"Percentage: {((overallHydrogenContent / hydroCap) * 100).ToString("F2")}%\n\n").
-                Append($"Hydrogen Tank Count: {hydroTanks.Count}\n\n");
+                Append($"Hydrogen Tank Count: {hydroTanks.Count}\n\n\n");
 
             hydroMessage.
                 Append($"Current Oxygen Status:\n {overallOxygenContent.ToString("N0")}l/{oxyCap.ToString("N0")}l\n\n").
                 Append($"Percentage: {((overallOxygenContent / oxyCap) * 100).ToString("F2")}%\n\n").
                 Append($"Oxygen Tank Count: {oxyTanks.Count}");
+
+            List<IMyShipController> controllers = new List<IMyShipController>();
+            GridTerminalSystem.GetBlocksOfType<IMyShipController>(controllers);
+
+            if (controllers.Count != 0)
+            {
+                hydroMessage.
+                    Append($"\n\nShip mass: {controllers[0].CalculateShipMass().PhysicalMass.ToString("N0")}kg");
+            }
 
 
             WriteTextOnList(myHydroLcdPanels, hydroMessage);
