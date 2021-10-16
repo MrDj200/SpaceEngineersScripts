@@ -67,9 +67,9 @@ namespace IngameScript
 			List<IMyTextPanel> myPPOLcdPanels = new List<IMyTextPanel>();            
             lcdGroup.GetBlocksOfType(myPPOLcdPanels);
 
-            var hydroLcdGroup = GridTerminalSystem.GetBlockGroupWithName(DjConfig.HydroLcdGroupName);
+            /*var hydroLcdGroup = GridTerminalSystem.GetBlockGroupWithName(DjConfig.HydroLcdGroupName);
             List<IMyTextPanel> myHydroLcdPanels = new List<IMyTextPanel>();
-            hydroLcdGroup.GetBlocksOfType(myHydroLcdPanels);
+            hydroLcdGroup.GetBlocksOfType(myHydroLcdPanels);*/
 
             if (myPPOLcdPanels.Count <= 0 /*&& myHydroLcdPanels.Count <= 0*/)
             {
@@ -83,10 +83,10 @@ namespace IngameScript
 
                 WriteTextOnList(myPPOLcdPanels, DjConfig.message);
             }
-            if (myHydroLcdPanels.Count >= 0)
+            /*if (myHydroLcdPanels.Count >= 0)
             {
                 HydroStuff(myHydroLcdPanels);
-            }          
+            }          */
 			
 		}
 
@@ -179,8 +179,9 @@ namespace IngameScript
         {
             foreach (IMyTextPanel curPanel in list)
             {
-                curPanel.ShowPublicTextOnScreen();
-                curPanel.WritePublicText(msg, append);
+                //curPanel.ShowPublicTextOnScreen();
+                //curPanel.WritePublicText(msg, append);
+                curPanel.WriteText(msg, append);
             }
         }
 
@@ -337,9 +338,10 @@ namespace IngameScript
             foreach (IMyReactor reactor in reactors)
             {
                 inventory = reactor.GetInventory(0);
-                var items = inventory.GetItems();
+                List<MyInventoryItem> items = new List<MyInventoryItem>();
+                inventory.GetItems(items);
 
-                totalitems.AddRange(items);
+                //totalitems.AddRange(items);
             }
 
             foreach (IMyInventoryItem item in totalitems)

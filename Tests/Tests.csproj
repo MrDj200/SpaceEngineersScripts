@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{47099909-E843-4534-9425-B9307BE3DAFF}</ProjectGuid>
+    <ProjectGuid>{877EBDC1-193C-49BF-8759-27DD06F26B8F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>IngameScript</RootNamespace>
-    <AssemblyName>Tests</AssemblyName>
+    <AssemblyName>tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -25,6 +25,7 @@
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="netstandard" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -33,80 +34,25 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Sandbox.Common">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\Sandbox.Common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Sandbox.Game">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\Sandbox.Game.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Sandbox.Graphics">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\Sandbox.Graphics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SpaceEngineers.Game">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\SpaceEngineers.Game.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SpaceEngineers.ObjectBuilders">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\SpaceEngineers.ObjectBuilders.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\VRage.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Audio">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\VRage.Audio.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Game">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\VRage.Game.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Input">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\VRage.Input.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Library">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\VRage.Library.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Math">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\VRage.Math.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Render">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\VRage.Render.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Render11">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\VRage.Render11.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Scripting">
-      <HintPath>e:\steam\SteamApps\common\SpaceEngineers\Bin64\VRage.Scripting.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MDKUtilities">
-      <HintPath>C:\Users\David\AppData\Local\Microsoft\VisualStudio\15.0_67a81bc2\Extensions\bh5kl2im.fpx\MDKUtilities.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Analyzer Include="C:\Users\David\AppData\Local\Microsoft\VisualStudio\15.0_67a81bc2\Extensions\bh5kl2im.fpx\Analyzers\MDKAnalyzer.dll" />
   </ItemGroup>
+  <Import Project="MDK/MDK.options.props" />
+  <Import Project="MDK/MDK.paths.props" Condition="exists('MDK/MDK.paths.props')" />
   <ItemGroup>
     <Compile Include="MDK\Bootstrapper.cs" />
-    <AdditionalFiles Include="MDK\MDK.options">
+    <AdditionalFiles Include="MDK\MDK.options.props">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="MDK\MDK.paths.props">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
     <Compile Include="Program.cs" />
-    <Compile Include="Readme.cs" />
+    <AdditionalFiles Include="Instructions.readme" />
     <AdditionalFiles Include="thumb.png" />
     <AdditionalFiles Include="MDK\whitelist.cache" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
-    <Copy SourceFiles="mdk\mdk.options" DestinationFolder="$(TargetDir)\mdk" />
+    <Copy SourceFiles="MDK\MDK.options.props" DestinationFolder="$(TargetDir)\MDK" />
+    <Copy SourceFiles="MDK\MDK.paths.props" DestinationFolder="$(TargetDir)\MDK" />
   </Target>
 </Project>

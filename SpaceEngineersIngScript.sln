@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblerCleaner", "SpaceEngineersIngScript\AssemblerCleaner.csproj", "{A69878D0-BC66-43FD-B4CE-CFC6B62271A1}"
 EndProject
@@ -19,11 +19,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntennaReceiver", "AntennaR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjRoomOverview", "DjRoomOverview\DjRoomOverview.csproj", "{CE3221CF-57DF-4876-AEC2-5C51054EDC60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxygenControl", "OxygenControl\OxygenControl.csproj", "{9E68E2BD-C289-4DC1-B4CB-95734968DCDC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{47099909-E843-4534-9425-B9307BE3DAFF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScripts", "SaveScripts\SaveScripts.csproj", "{E0E49B37-62C8-4509-B83C-7356A4363477}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoorInverter", "DoorInverter\DoorInverter.csproj", "{AF35D0D1-8FD2-42B3-8899-2E93A3007ADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracingTests", "RayTracingTests\RayTracingTests.csproj", "{A29C8A71-6752-42A3-8E3F-95BB08E098F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjPowerProductionOverviewV2", "DjPowerProductionOverviewV2\DjPowerProductionOverviewV2.csproj", "{21D2CBBA-AF3D-43A3-B6E2-2E9491BD42B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThrusterTests", "ThrusterTests\ThrusterTests.csproj", "{987353C2-657F-4D7D-B5F7-502ABBD8429E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjPPO2", "DjPPO2\DjPPO2.csproj", "{0A4ACEF8-C1E1-4D0B-970B-219EC803A59D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargoInfo", "CargoInfo\CargoInfo.csproj", "{5E481561-D8D0-4CA5-B087-B1888188C4CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpriteTests", "SpriteTests\SpriteTests.csproj", "{7746388B-8ADD-435A-B43B-230772D3D481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{877EBDC1-193C-49BF-8759-27DD06F26B8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpugsEasyAutoDock", "SpugsEasyAutoDock\SpugsEasyAutoDock.csproj", "{483E9B24-137C-4C52-8647-BB4FF4E21EF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpudsEasyAutoDockOptional", "SpudsEasyAutoDockOptional\SpudsEasyAutoDockOptional.csproj", "{73B47336-F258-4FE5-A3A4-C9F028EC309D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,12 +62,28 @@ Global
 		{F743F88E-99D2-4D9F-82A7-AE7335A9CAB0}.Debug|x64.Build.0 = Debug|x64
 		{CE3221CF-57DF-4876-AEC2-5C51054EDC60}.Debug|x64.ActiveCfg = Debug|x64
 		{CE3221CF-57DF-4876-AEC2-5C51054EDC60}.Debug|x64.Build.0 = Debug|x64
-		{9E68E2BD-C289-4DC1-B4CB-95734968DCDC}.Debug|x64.ActiveCfg = Debug|x64
-		{9E68E2BD-C289-4DC1-B4CB-95734968DCDC}.Debug|x64.Build.0 = Debug|x64
-		{47099909-E843-4534-9425-B9307BE3DAFF}.Debug|x64.ActiveCfg = Debug|x64
-		{47099909-E843-4534-9425-B9307BE3DAFF}.Debug|x64.Build.0 = Debug|x64
 		{E0E49B37-62C8-4509-B83C-7356A4363477}.Debug|x64.ActiveCfg = Debug|x64
 		{E0E49B37-62C8-4509-B83C-7356A4363477}.Debug|x64.Build.0 = Debug|x64
+		{AF35D0D1-8FD2-42B3-8899-2E93A3007ADD}.Debug|x64.ActiveCfg = Debug|x64
+		{AF35D0D1-8FD2-42B3-8899-2E93A3007ADD}.Debug|x64.Build.0 = Debug|x64
+		{A29C8A71-6752-42A3-8E3F-95BB08E098F4}.Debug|x64.ActiveCfg = Debug|x64
+		{A29C8A71-6752-42A3-8E3F-95BB08E098F4}.Debug|x64.Build.0 = Debug|x64
+		{21D2CBBA-AF3D-43A3-B6E2-2E9491BD42B0}.Debug|x64.ActiveCfg = Debug|x64
+		{21D2CBBA-AF3D-43A3-B6E2-2E9491BD42B0}.Debug|x64.Build.0 = Debug|x64
+		{987353C2-657F-4D7D-B5F7-502ABBD8429E}.Debug|x64.ActiveCfg = Debug|x64
+		{987353C2-657F-4D7D-B5F7-502ABBD8429E}.Debug|x64.Build.0 = Debug|x64
+		{0A4ACEF8-C1E1-4D0B-970B-219EC803A59D}.Debug|x64.ActiveCfg = Debug|x64
+		{0A4ACEF8-C1E1-4D0B-970B-219EC803A59D}.Debug|x64.Build.0 = Debug|x64
+		{5E481561-D8D0-4CA5-B087-B1888188C4CE}.Debug|x64.ActiveCfg = Debug|x64
+		{5E481561-D8D0-4CA5-B087-B1888188C4CE}.Debug|x64.Build.0 = Debug|x64
+		{7746388B-8ADD-435A-B43B-230772D3D481}.Debug|x64.ActiveCfg = Debug|x64
+		{7746388B-8ADD-435A-B43B-230772D3D481}.Debug|x64.Build.0 = Debug|x64
+		{877EBDC1-193C-49BF-8759-27DD06F26B8F}.Debug|x64.ActiveCfg = Debug|x64
+		{877EBDC1-193C-49BF-8759-27DD06F26B8F}.Debug|x64.Build.0 = Debug|x64
+		{483E9B24-137C-4C52-8647-BB4FF4E21EF6}.Debug|x64.ActiveCfg = Debug|x64
+		{483E9B24-137C-4C52-8647-BB4FF4E21EF6}.Debug|x64.Build.0 = Debug|x64
+		{73B47336-F258-4FE5-A3A4-C9F028EC309D}.Debug|x64.ActiveCfg = Debug|x64
+		{73B47336-F258-4FE5-A3A4-C9F028EC309D}.Debug|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
