@@ -44,12 +44,22 @@ namespace IngameScript
             Configuration();
             Runtime.UpdateFrequency = UpdateFrequency.Update100;
 
+
             DjConfig.targetContainer = (IMyCargoContainer)GridTerminalSystem.GetBlockWithName(DjConfig.targetContainerName);
+            if (DjConfig.targetContainer == null)
+            {
+                Echo($"Target container with name \"{DjConfig.targetContainerName}\" not found!");
+                return;
+            }
             DjConfig.targetInv = DjConfig.targetContainer.GetInventory();
 
             DjConfig.mainCargo = (IMyCargoContainer)GridTerminalSystem.GetBlockWithName(DjConfig.mainCargoName);
+            if (DjConfig.mainCargo == null)
+            {
+                Echo($"Main storage with name \"{DjConfig.mainCargoName}\" not found!");
+                return;
+            }
             DjConfig.mainInv = DjConfig.mainCargo.GetInventory();
-
         }
 
         public void Main(string argument, UpdateType updateSource)
