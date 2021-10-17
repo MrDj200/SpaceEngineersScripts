@@ -18,6 +18,9 @@ namespace IngameScript
             //Name of the Main Storage the Items will be moved when the above is to be cleared:
             DjConfig.mainCargoName = "Large Cargo Container (Master)";
 
+            //Name of raw ressource storage
+            DjConfig.rawCargoName = "Raw Ressource Cargo";
+
             DjConfig.disassemblerNameTag = "[DjDis]";
 
         }
@@ -31,13 +34,15 @@ namespace IngameScript
         {
             public static String targetContainerName = "AssCargo";
             public static String mainCargoName = "MainCargo";
+            public static String rawCargoName = "RawCargo";
             public static String disassemblerNameTag = "[DjDis]";
-            public static IMyCargoContainer targetContainer, mainCargo;
-            public static IMyInventory targetInv, mainInv;
+            public static IMyCargoContainer targetContainer, mainCargo, rawCargo;
+            public static IMyInventory targetInv, mainInv, rawInv;
         }
 
         List<IMyAssembler> allAsses = new List<IMyAssembler>();
         List<IMyAssembler> disassemblers = new List<IMyAssembler>();
+        List<IMyRefinery> allRefineries = new List<IMyRefinery>();
 
         public Program()
         {
@@ -60,10 +65,17 @@ namespace IngameScript
                 return;
             }
             DjConfig.mainInv = DjConfig.mainCargo.GetInventory();
+
+            DjConfig.rawCargo = (IMyCargoContainer)GridTerminalSystem.GetBlockWithName(DjConfig.rawCargoName);
+            if (DjConfig.rawCargo != null)
+            {
+                DjConfig.rawInv = DjConfig.rawCargo.GetInventory();
+            }
         }
 
         public void Main(string argument, UpdateType updateSource)
         {
+            Echo($"Got Argument: '{argument}'");
             RunStuff();
 
             GridTerminalSystem.GetBlocksOfType(disassemblers, block =>
@@ -83,6 +95,7 @@ namespace IngameScript
             {
                 if (argument.StartsWith("clear"))
                 {
+                    Echo("Trying to clear shit!");
                     ClearContainer(DjConfig.targetInv, DjConfig.mainInv);
                     return;
                 }
@@ -146,7 +159,26 @@ namespace IngameScript
             foreach (IMyAssembler ass in allAsses)
             {
                 ass.GetInventory(1).TransferItemTo(DjConfig.targetInv, 0);
+                if (DjConfig.rawInv != null)
+                {
+                    ass.GetInventory(0).TransferItemTo(DjConfig.rawInv, 0);
+                }
             }
+
+            if (DjConfig.rawInv != null)
+            {
+                allRefineries.Clear();
+                GridTerminalSystem.GetBlocksOfType(allRefineries, block =>
+                    block.CubeGrid == Me.CubeGrid &&
+                    block.GetInventory(1).IsConnectedTo(DjConfig.rawInv)
+                );
+
+                foreach (var refinery in allRefineries)
+                {
+                    refinery.GetInventory(1).TransferItemTo(DjConfig.rawInv, 0);
+                }
+            }
+
         }
 
         void ClearContainer(IMyInventory sourceContainer, IMyInventory targetContainer)
